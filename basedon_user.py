@@ -57,6 +57,8 @@ def arabert_model():
 
 from keras import backend as K
 
+
+
 steps_per_exe =32
 
 with strategy.scope():
@@ -72,6 +74,7 @@ with strategy.scope():
 @st.cache(allow_output_mutation=True)
 #model.load_weights("gs://axial-trail-334408-tf2-models/book-mnist")
 
+df = pd.read_csv('aotures.csv', index_col=0)	
 #text = 'الرأي فإنه متى ما اتبع الرأي جاءه رجل آخر أقوى في الرأي منه فاتبعه فكلما غلبه رجل اتبعه أرى أن هذا بعد لم يتم واعملوا من الآثار بما روي عن جابر رضي الله عنه أن النبي صلى الله عليه وسلم قال قد تركت فيكم ما لن تضلوا بعدي إذا اعتصمتم به كتاب الله وسنتي ولن يتفرقا حتى يردا على الحوض وروي عن عمرو بن شعيب عن أبيه عن جده خرج رسول الله صلى الله عليه وسلم يوما وهم يجادلون في القرآن فخرج ووجهه أحمر كالدم فقال يا قوم على هذا هلك من كان قبلكم جادلوا في القرآن وضربوا بعضه ببعض فما كان من حلال فاعملوا به وما كان من حرام فانتهوا عنه وما كان من متشابه فآمنوا به'
 text= " لا ولا احد"
 text_encoded = arabert_encode(text)
@@ -88,7 +91,7 @@ st.write('Author: ',author , '\nBook: ', book, '\nConfidence:', y_pred[0][[np.ar
 	
 	
 	
-	
+
 	
 	
 #pio.renderers.default = 'chrome'
