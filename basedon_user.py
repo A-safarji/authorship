@@ -103,8 +103,6 @@ def arabert_model():
 
 from keras import backend as K
 
-
-
 steps_per_exe =32
 
 with strategy.scope():
@@ -123,21 +121,24 @@ def load_model():
     model.summary()  # included to make it visible when model is reloaded
     return model
 
-if __name__ == '__main__':
-    st.title('My app')
-    sentence = st.text_input('Input your sentence here:')
-    model= load_model()
-    if sentence:
-	p = (
-	    tf.data.Dataset.from_tensor_slices((text_encoded))
-	    .batch(batch_size)
-	).cache()
-	y_pred = model.predict(p, verbose=2)
-	author , book = df.iloc[[np.argmax(x) for x in y_pred][0]].tolist()
-	st.write('Author: ',author , '\nBook: ', book, '\nConfidence:', y_pred[0][[np.argmax(x) for x in y_pred][0]])
+
+model= load_model()
+st.write(model)
+# if __name__ == '__main__':
+#     st.title('My app')
+#     sentence = st.text_input('Input your sentence here:')
+#     model= load_model()
+#     if sentence:
+# 	p = (
+# 	    tf.data.Dataset.from_tensor_slices((text_encoded))
+# 	    .batch(batch_size)
+# 	).cache()
+# 	y_pred = model.predict(p, verbose=2)
+# 	author , book = df.iloc[[np.argmax(x) for x in y_pred][0]].tolist()
+# 	st.write('Author: ',author , '\nBook: ', book, '\nConfidence:', y_pred[0][[np.argmax(x) for x in y_pred][0]])
 
 	
-st.write('Author: ',author , '\nBook: ', book, '\nConfidence:', y_pred[0][[np.argmax(x) for x in y_pred][0]])
+# st.write('Author: ',author , '\nBook: ', book, '\nConfidence:', y_pred[0][[np.argmax(x) for x in y_pred][0]])
 	
 	
 #model.load_weights("gs://axial-trail-334408-tf2-models/book-mnist")
