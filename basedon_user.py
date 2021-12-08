@@ -69,15 +69,15 @@ from keras import backend as K
 #         steps_per_execution=steps_per_exe
 #     )
 
-@st.cache(allow_output_mutation=True)
-def load_model():
-    #model = load_weights('gs://axial-trail-334408-tf2-models/book-mnist')
-    model = tf.keras.models.load_model("gs://axial-trail-334408-tf2-models/book-mnist")
-    model.summary()  # included to make it visible when model is reloaded
-    return model
+# @st.cache(allow_output_mutation=True)
+# def load_model():
+#     #model = load_weights('gs://axial-trail-334408-tf2-models/book-mnist')
+#     model = tf.keras.models.load_model("gs://axial-trail-334408-tf2-models/book-mnist")
+#     model.summary()  # included to make it visible when model is reloaded
+#     return model
 
-model= load_model()
-st.write(model)
+# model= load_model()
+# st.write(model)
 
 
 
@@ -152,6 +152,6 @@ st.write(model)
       
 
 df = pd.read_csv('aotures.csv', index_col=0)	
-st.write(df)
+df
 
 
