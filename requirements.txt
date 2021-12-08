@@ -1,14 +1,8 @@
-plotly
-cloudpickle
-pickleshare
-altair
 pandas
 streamlit 
-matplotlib
 numpy
-shap
-pathlib 
-sklearn
-
-
+tensorflow
+tf2onnx
+onnxruntime
+transformers
 
