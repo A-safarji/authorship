@@ -72,6 +72,18 @@ with strategy.scope():
     )
 
 @st.cache(allow_output_mutation=True)
+def load_model():
+    model = load_model('gs://axial-trail-334408-tf2-models/book-mnist')
+    model._make_predict_function()
+    model.summary()  # included to make it visible when model is reloaded
+    return model
+
+if __name__ == '__main__':
+    st.title('My first app')
+    sentence = st.text_input('Input your sentence here:')
+    model= load_model()
+    if sentence:
+        y_hat = model.predict(sentence)
 #model.load_weights("gs://axial-trail-334408-tf2-models/book-mnist")
 
 df = pd.read_csv('aotures.csv', index_col=0)	
