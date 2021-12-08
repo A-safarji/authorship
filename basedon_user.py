@@ -37,15 +37,6 @@ To achieve this purpose, one compares a query text with a model of the candidate
 
 #text = st.text_area("Authorship Attribution Check","Enter Text Here")
 
-
-
-
-
-
-
-
-
-
 st.write('---')
 st.write('## Contact Our Group')
 
@@ -57,8 +48,6 @@ st.write("""
 
 df = pd.read_csv('aotures.csv', index_col=0)	
 df
-
-
 
 
 from tensorflow.keras.layers import (
@@ -146,6 +135,7 @@ if __name__ == '__main__':
 	st.write('Author: ',author , '\nBook: ', book, '\nConfidence:', y_pred[0][[np.argmax(x) for x in y_pred][0]])
 	
 	
+st.write('Author: ',author , '\nBook: ', book, '\nConfidence:', y_pred[0][[np.argmax(x) for x in y_pred][0]])
 	
 	
 #model.load_weights("gs://axial-trail-334408-tf2-models/book-mnist")
