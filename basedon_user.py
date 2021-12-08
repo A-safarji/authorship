@@ -1,8 +1,39 @@
 import streamlit as st
 import numpy as np 
 import pandas as pd
+import tensorflow as tf
+import logging
+import pandas as pd
+from tensorflow.keras.layers import (
+    Dense,
+    Flatten,
+    Conv1D,
+    Dropout,
+    Input,
+)
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.optimizers import Adam
+from tensorflow.keras import Model
+from transformers import TFBertModel
+from transformers import BertTokenizer
+model_name = "aubmindlab/bert-base-arabertv2"
+max_length = 512
+batch_size = 128
+num_class = 95
 
-import pickle
+tf.compat.v1.logging.set_verbosity(2)
+tokenizer = BertTokenizer.from_pretrained(model_name)
+
+
+try:
+    tpu = tf.distribute.cluster_resolver.TPUClusterResolver()
+    tf.config.experimental_connect_to_cluster(tpu)
+    tf.tpu.experimental.initialize_tpu_system(tpu)
+    strategy = tf.distribute.TPUStrategy(tpu)
+except ValueError:
+    strategy = tf.distribute.get_strategy() # for CPU and single GPU
+    print('Number of replicas:', strategy.num_replicas_in_sync)
+
 
 pio.renderers.default = 'chrome'
 st.set_option('deprecation.showPyplotGlobalUse', False)
@@ -30,6 +61,14 @@ To achieve this purpose, one compares a query text with a model of the candidate
 	""")
 
 raw_text = st.text_area("Authorship Attribution Check","Enter Text Here")
+
+
+
+
+
+
+
+
 
 
 st.write('---')
