@@ -69,6 +69,7 @@ with strategy.scope():
         steps_per_execution=steps_per_exe
     )
 
+@st.cache(allow_output_mutation=True)
 model.load_weights("gs://axial-trail-334408-tf2-models/book-mnist")
 
 
