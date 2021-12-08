@@ -7,32 +7,32 @@ import pandas as pd
 from transformers import logging
 from transformers import TFBertModel
 from transformers import BertTokenizer
-from tensorflow.keras.layers import (
-    Dense,
-    Flatten,
-    Conv1D,
-    Dropout,
-    Input,
-)
-from tensorflow.keras.models import Sequential
-from tensorflow.keras.optimizers import Adam
-from tensorflow.keras import Model
-model_name = "aubmindlab/bert-base-arabertv2"
-max_length = 512
-batch_size = 128
-num_class = 95
+# from tensorflow.keras.layers import (
+#     Dense,
+#     Flatten,
+#     Conv1D,
+#     Dropout,
+#     Input,
+# )
+# from tensorflow.keras.models import Sequential
+# from tensorflow.keras.optimizers import Adam
+# from tensorflow.keras import Model
+# model_name = "aubmindlab/bert-base-arabertv2"
+# max_length = 512
+# batch_size = 128
+# num_class = 95
 
-tf.compat.v1.logging.set_verbosity(2)
-tokenizer = BertTokenizer.from_pretrained(model_name)
+# tf.compat.v1.logging.set_verbosity(2)
+# tokenizer = BertTokenizer.from_pretrained(model_name)
 
-# try:
-#     tpu = tf.distribute.cluster_resolver.TPUClusterResolver()
-#     tf.config.experimental_connect_to_cluster(tpu)
-#     tf.tpu.experimental.initialize_tpu_system(tpu)
-#     strategy = tf.distribute.TPUStrategy(tpu)
-# except ValueError:
-#     strategy = tf.distribute.get_strategy() # for CPU and single GPU
-#     print('Number of replicas:', strategy.num_replicas_in_sync)
+try:
+    tpu = tf.distribute.cluster_resolver.TPUClusterResolver()
+    tf.config.experimental_connect_to_cluster(tpu)
+    tf.tpu.experimental.initialize_tpu_system(tpu)
+    strategy = tf.distribute.TPUStrategy(tpu)
+except ValueError:
+    strategy = tf.distribute.get_strategy() # for CPU and single GPU
+    st.write('Number of replicas:', strategy.num_replicas_in_sync)
 
 def arabert_encode(data):
     tokens = tokenizer.batch_encode_plus(
@@ -75,9 +75,8 @@ def load_model():
     model.summary()  # included to make it visible when model is reloaded
     return model
 
-
-# model= load_model()
-# st.write(model)
+model= load_model()
+st.write(model)
 
 
 
