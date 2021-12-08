@@ -141,9 +141,7 @@ if __name__ == '__main__':
     if sentence:
         text_encoded = arabert_encode(sentence)
 	p = (
-	    tf.data.Dataset.from_tensor_slices((text_encoded))
-	    .batch(batch_size)
-	).cache()
+	tf.data.Dataset.from_tensor_slices((text_encoded)).batch(batch_size)).cache()
 	y_pred = model.predict(p, verbose=2)
 	author , book = df.iloc[[np.argmax(x) for x in y_pred][0]].tolist()
 	st.write('Author: ',author , '\nBook: ', book, '\nConfidence:', y_pred[0][[np.argmax(x) for x in y_pred][0]])
