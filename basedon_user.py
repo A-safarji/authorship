@@ -4,6 +4,7 @@ import pandas as pd
 import tensorflow as tf
 import logging
 import pandas as pd
+from transformers import logging
 from transformers import TFBertModel
 from transformers import BertTokenizer
 from tensorflow.keras.layers import (
