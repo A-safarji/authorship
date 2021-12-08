@@ -35,7 +35,7 @@ except ValueError:
     print('Number of replicas:', strategy.num_replicas_in_sync)
 
 
-pio.renderers.default = 'chrome'
+#pio.renderers.default = 'chrome'
 st.set_option('deprecation.showPyplotGlobalUse', False)
 #st.set_page_config(layout="wide")
 
