@@ -71,7 +71,8 @@ from keras import backend as K
 
 @st.cache(allow_output_mutation=True)
 def load_model():
-    model = load_weights('gs://axial-trail-334408-tf2-models/book-mnist')
+    #model = load_weights('gs://axial-trail-334408-tf2-models/book-mnist')
+    model = tf.keras.models.load_model("gs://axial-trail-334408-tf2-models/book-mnist")
     model.summary()  # included to make it visible when model is reloaded
     return model
 
