@@ -21,18 +21,17 @@ import pandas as pd
 # max_length = 512
 # batch_size = 128
 # num_class = 95
-
-tf.compat.v1.logging.set_verbosity(2)
+#tf.compat.v1.logging.set_verbosity(2)
 # # tokenizer = BertTokenizer.from_pretrained(model_name)
 
-try:
-    tpu = tf.distribute.cluster_resolver.TPUClusterResolver()
-    tf.config.experimental_connect_to_cluster(tpu)
-    tf.tpu.experimental.initialize_tpu_system(tpu)
-    strategy = tf.distribute.TPUStrategy(tpu)
-except ValueError:
-    strategy = tf.distribute.get_strategy() # for CPU and single GPU
-    st.write('Number of replicas:', strategy.num_replicas_in_sync)
+# try:
+#     tpu = tf.distribute.cluster_resolver.TPUClusterResolver()
+#     tf.config.experimental_connect_to_cluster(tpu)
+#     tf.tpu.experimental.initialize_tpu_system(tpu)
+#     strategy = tf.distribute.TPUStrategy(tpu)
+# except ValueError:
+#     strategy = tf.distribute.get_strategy() # for CPU and single GPU
+#     st.write('Number of replicas:', strategy.num_replicas_in_sync)
 
 # def arabert_encode(data):
 #     tokens = tokenizer.batch_encode_plus(
@@ -68,16 +67,15 @@ from keras import backend as K
 #         metrics=['acc'],
 #         steps_per_execution=steps_per_exe
 #     )
+@st.cache(allow_output_mutation=True)
+def load_model():
+    #model = load_weights('gs://axial-trail-334408-tf2-models/book-mnist')
+    model = tf.keras.models.load_model("gs://axial-trail-334408-tf2-models/book-mnist")
+    model.summary()  # included to make it visible when model is reloaded
+    return model
 
-# @st.cache(allow_output_mutation=True)
-# def load_model():
-#     #model = load_weights('gs://axial-trail-334408-tf2-models/book-mnist')
-#     model = tf.keras.models.load_model("gs://axial-trail-334408-tf2-models/book-mnist")
-#     model.summary()  # included to make it visible when model is reloaded
-#     return model
-
-# model= load_model()
-# st.write(model)
+model= load_model()
+st.write(model)
 
 
 
