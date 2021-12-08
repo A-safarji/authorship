@@ -4,23 +4,23 @@ import pandas as pd
 import tensorflow as tf
 import logging
 import pandas as pd
-# from transformers import logging
-# from transformers import TFBertModel
-# from transformers import BertTokenizer
-# from tensorflow.keras.layers import (
-#     Dense,
-#     Flatten,
-#     Conv1D,
-#     Dropout,
-#     Input,
-# )
-# from tensorflow.keras.models import Sequential
-# from tensorflow.keras.optimizers import Adam
-# from tensorflow.keras import Model
-# model_name = "aubmindlab/bert-base-arabertv2"
-# max_length = 512
-# batch_size = 128
-# num_class = 95
+from transformers import logging
+from transformers import TFBertModel
+from transformers import BertTokenizer
+from tensorflow.keras.layers import (
+    Dense,
+    Flatten,
+    Conv1D,
+    Dropout,
+    Input,
+)
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.optimizers import Adam
+from tensorflow.keras import Model
+model_name = "aubmindlab/bert-base-arabertv2"
+max_length = 512
+batch_size = 128
+num_class = 95
 
 # tf.compat.v1.logging.set_verbosity(2)
 # # tokenizer = BertTokenizer.from_pretrained(model_name)
@@ -55,7 +55,7 @@ except ValueError:
 #     model = Model(inputs=input_word_ids, outputs=output)
 #     return model
 
-#from keras import backend as K
+from keras import backend as K
 
 #steps_per_exe =32
 
@@ -152,6 +152,6 @@ st.write(model)
       
 
 df = pd.read_csv('aotures.csv', index_col=0)	
-df
+st.write(df)
 
 
