@@ -1,7 +1,7 @@
 pandas
 streamlit 
 numpy
-tensorflow
+tensorflow-cpu
 tf2onnx
 onnxruntime
 transformers
