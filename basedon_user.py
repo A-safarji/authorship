@@ -87,18 +87,19 @@ if __name__ == '__main__':
 #model.load_weights("gs://axial-trail-334408-tf2-models/book-mnist")
 
 df = pd.read_csv('aotures.csv', index_col=0)	
-#text = 'الرأي فإنه متى ما اتبع الرأي جاءه رجل آخر أقوى في الرأي منه فاتبعه فكلما غلبه رجل اتبعه أرى أن هذا بعد لم يتم واعملوا من الآثار بما روي عن جابر رضي الله عنه أن النبي صلى الله عليه وسلم قال قد تركت فيكم ما لن تضلوا بعدي إذا اعتصمتم به كتاب الله وسنتي ولن يتفرقا حتى يردا على الحوض وروي عن عمرو بن شعيب عن أبيه عن جده خرج رسول الله صلى الله عليه وسلم يوما وهم يجادلون في القرآن فخرج ووجهه أحمر كالدم فقال يا قوم على هذا هلك من كان قبلكم جادلوا في القرآن وضربوا بعضه ببعض فما كان من حلال فاعملوا به وما كان من حرام فانتهوا عنه وما كان من متشابه فآمنوا به'
-text= " لا ولا احد"
-text_encoded = arabert_encode(text)
-p = (
-    tf.data.Dataset.from_tensor_slices((text_encoded))
-    .batch(batch_size)
-).cache()
-y_pred = model.predict(p, verbose=2)
+df
+# #text = 'الرأي فإنه متى ما اتبع الرأي جاءه رجل آخر أقوى في الرأي منه فاتبعه فكلما غلبه رجل اتبعه أرى أن هذا بعد لم يتم واعملوا من الآثار بما روي عن جابر رضي الله عنه أن النبي صلى الله عليه وسلم قال قد تركت فيكم ما لن تضلوا بعدي إذا اعتصمتم به كتاب الله وسنتي ولن يتفرقا حتى يردا على الحوض وروي عن عمرو بن شعيب عن أبيه عن جده خرج رسول الله صلى الله عليه وسلم يوما وهم يجادلون في القرآن فخرج ووجهه أحمر كالدم فقال يا قوم على هذا هلك من كان قبلكم جادلوا في القرآن وضربوا بعضه ببعض فما كان من حلال فاعملوا به وما كان من حرام فانتهوا عنه وما كان من متشابه فآمنوا به'
+# text= " لا ولا احد"
+# text_encoded = arabert_encode(text)
+# p = (
+#     tf.data.Dataset.from_tensor_slices((text_encoded))
+#     .batch(batch_size)
+# ).cache()
+# y_pred = model.predict(p, verbose=2)
 	
 	
-author , book = df.iloc[[np.argmax(x) for x in y_pred][0]].tolist()
-st.write('Author: ',author , '\nBook: ', book, '\nConfidence:', y_pred[0][[np.argmax(x) for x in y_pred][0]])
+# author , book = df.iloc[[np.argmax(x) for x in y_pred][0]].tolist()
+# st.write('Author: ',author , '\nBook: ', book, '\nConfidence:', y_pred[0][[np.argmax(x) for x in y_pred][0]])
 	
 	
 	
