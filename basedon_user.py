@@ -70,7 +70,7 @@ from keras import backend as K
 #         steps_per_execution=steps_per_exe
 #     )
 
-@st.cache(allow_output_mutation=True)
+#@st.cache(allow_output_mutation=True)
 def load_model():
     #model = load_weights('gs://axial-trail-334408-tf2-models/book-mnist')
     model = tf.keras.models.load_model("gs://axial-trail-334408-tf2-models/book-mnist")
