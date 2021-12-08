@@ -17,13 +17,13 @@ from tensorflow.keras.layers import (
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.optimizers import Adam
 from tensorflow.keras import Model
-model_name = "aubmindlab/bert-base-arabertv2"
-max_length = 512
-batch_size = 128
-num_class = 95
+# model_name = "aubmindlab/bert-base-arabertv2"
+# max_length = 512
+# batch_size = 128
+# num_class = 95
 
-tf.compat.v1.logging.set_verbosity(2)
-# tokenizer = BertTokenizer.from_pretrained(model_name)
+# tf.compat.v1.logging.set_verbosity(2)
+# # tokenizer = BertTokenizer.from_pretrained(model_name)
 
 try:
     tpu = tf.distribute.cluster_resolver.TPUClusterResolver()
@@ -34,42 +34,42 @@ except ValueError:
     strategy = tf.distribute.get_strategy() # for CPU and single GPU
     st.write('Number of replicas:', strategy.num_replicas_in_sync)
 
-def arabert_encode(data):
-    tokens = tokenizer.batch_encode_plus(
-        data, max_length=max_length, padding="max_length", truncation=True
-    )
-    return tf.constant(tokens["input_ids"])
+# def arabert_encode(data):
+#     tokens = tokenizer.batch_encode_plus(
+#         data, max_length=max_length, padding="max_length", truncation=True
+#     )
+#     return tf.constant(tokens["input_ids"])
 
-def arabert_model():
-    bert_encoder = TFBertModel.from_pretrained(model_name, output_attentions=True)
-    input_word_ids = Input(
-        shape=(max_length,), dtype=tf.int32, name="input_ids"
-    )
-    last_hidden_states = bert_encoder(input_word_ids)[0]
-    clf_output = Flatten()(last_hidden_states)
-    net = Dense(512, activation="relu")(clf_output)
-    net = Dropout(0.3)(net)
-    net = Dense(440, activation="relu")(net)
-    net = Dropout(0.3)(net)
-    output = Dense(num_class, activation="softplus")(net)
-    model = Model(inputs=input_word_ids, outputs=output)
-    return model
+# def arabert_model():
+#     bert_encoder = TFBertModel.from_pretrained(model_name, output_attentions=True)
+#     input_word_ids = Input(
+#         shape=(max_length,), dtype=tf.int32, name="input_ids"
+#     )
+#     last_hidden_states = bert_encoder(input_word_ids)[0]
+#     clf_output = Flatten()(last_hidden_states)
+#     net = Dense(512, activation="relu")(clf_output)
+#     net = Dropout(0.3)(net)
+#     net = Dense(440, activation="relu")(net)
+#     net = Dropout(0.3)(net)
+#     output = Dense(num_class, activation="softplus")(net)
+#     model = Model(inputs=input_word_ids, outputs=output)
+#     return model
 
 from keras import backend as K
 
-steps_per_exe =32
+#steps_per_exe =32
 
-with strategy.scope():
-  model = arabert_model()
-  adam_optimizer = Adam(learning_rate=1e-5)
-  model.compile(
-        loss="categorical_crossentropy",
-        optimizer=adam_optimizer,
-        metrics=['acc'],
-        steps_per_execution=steps_per_exe
-    )
+# with strategy.scope():
+#   model = arabert_model()
+#   adam_optimizer = Adam(learning_rate=1e-5)
+#   model.compile(
+#         loss="categorical_crossentropy",
+#         optimizer=adam_optimizer,
+#         metrics=['acc'],
+#         steps_per_execution=steps_per_exe
+#     )
 
-#@st.cache(allow_output_mutation=True)
+@st.cache(allow_output_mutation=True)
 def load_model():
     model = load_weights('gs://axial-trail-334408-tf2-models/book-mnist')
     model.summary()  # included to make it visible when model is reloaded
