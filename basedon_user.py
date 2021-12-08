@@ -70,14 +70,14 @@ except ValueError:
 #     )
 
 @st.cache(allow_output_mutation=True)
-# def load_model():
-#     #model = load_weights('gs://axial-trail-334408-tf2-models/book-mnist')
-#     model = tf.keras.models.load_model("gs://axial-trail-334408-tf2-models/book-mnist")
-#     model.summary()  # included to make it visible when model is reloaded
-#     return model
+def load_model():
+    #model = load_weights('gs://axial-trail-334408-tf2-models/book-mnist')
+    model = tf.keras.models.load_model("gs://axial-trail-334408-tf2-models/book-mnist")
+    model.summary()  # included to make it visible when model is reloaded
+    return model
 
-# model= load_model()
-# st.write(model)
+model= load_model()
+st.write(model)
 
 
 
@@ -120,35 +120,35 @@ except ValueError:
 #st.set_page_config(layout="wide")
 
 #st.title('Recommended for you!')
-st.markdown(' <p align="center" class="big-font">  <b>Authorship Attribution <u> 🌟 T5 🇸🇦</b>   </p>', unsafe_allow_html=True)	
+# st.markdown(' <p align="center" class="big-font">  <b>Authorship Attribution <u> 🌟 T5 🇸🇦</b>   </p>', unsafe_allow_html=True)	
 
 
-st.markdown("""
-<style>
-.big-font {
-    font-size:50px !important;
-}
-</style>
-""", unsafe_allow_html=True)
+# st.markdown("""
+# <style>
+# .big-font {
+#     font-size:50px !important;
+# }
+# </style>
+# """, unsafe_allow_html=True)
 
 
 
-st.markdown("""
-إسناد التأليف العربي هو مهمة البحث عن مؤلف المستند. لتحقيق هذا الغرض ، يقارن المرء نص الاستعلام بنموذج المؤلف المرشح ويحدد احتمال نموذج الاستعلام.
+# st.markdown("""
+# إسناد التأليف العربي هو مهمة البحث عن مؤلف المستند. لتحقيق هذا الغرض ، يقارن المرء نص الاستعلام بنموذج المؤلف المرشح ويحدد احتمال نموذج الاستعلام.
 
-Arabic authorship attribution is the task of finding the author of a document.
-To achieve this purpose, one compares a query text with a model of the candidate author and determines the likelihood of the model for the query.
-	""")
+# Arabic authorship attribution is the task of finding the author of a document.
+# To achieve this purpose, one compares a query text with a model of the candidate author and determines the likelihood of the model for the query.
+# 	""")
 
-#text = st.text_area("Authorship Attribution Check","Enter Text Here")
+# #text = st.text_area("Authorship Attribution Check","Enter Text Here")
 
-st.write('---')
-st.write('## Contact Our Group')
+# st.write('---')
+# st.write('## Contact Our Group')
 
 
-st.write("""
-[Authorship Attribution](https://github.com/A-safarji) - feel free to contact!
-""")
+# st.write("""
+# [Authorship Attribution](https://github.com/A-safarji) - feel free to contact!
+# """)
       
 
 df = pd.read_csv('aotures.csv', index_col=0)	
