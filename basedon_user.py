@@ -17,10 +17,10 @@ from tensorflow.keras.layers import (
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.optimizers import Adam
 from tensorflow.keras import Model
-model_name = "aubmindlab/bert-base-arabertv2"
-max_length = 512
-batch_size = 128
-num_class = 95
+# model_name = "aubmindlab/bert-base-arabertv2"
+# max_length = 512
+# batch_size = 128
+# num_class = 95
 
 # tf.compat.v1.logging.set_verbosity(2)
 # # tokenizer = BertTokenizer.from_pretrained(model_name)
