@@ -4,7 +4,6 @@ import pandas as pd
 import tensorflow as tf
 import logging
 import pandas as pd
-import gcsfs
 from transformers import logging
 from transformers import TFBertModel
 from transformers import BertTokenizer
