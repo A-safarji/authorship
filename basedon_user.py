@@ -22,7 +22,7 @@ from tensorflow.keras import Model
 # batch_size = 128
 # num_class = 95
 
-# tf.compat.v1.logging.set_verbosity(2)
+tf.compat.v1.logging.set_verbosity(2)
 # # tokenizer = BertTokenizer.from_pretrained(model_name)
 
 try:
