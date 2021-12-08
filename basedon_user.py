@@ -25,14 +25,14 @@ num_class = 95
 tf.compat.v1.logging.set_verbosity(2)
 tokenizer = BertTokenizer.from_pretrained(model_name)
 
-try:
-    tpu = tf.distribute.cluster_resolver.TPUClusterResolver()
-    tf.config.experimental_connect_to_cluster(tpu)
-    tf.tpu.experimental.initialize_tpu_system(tpu)
-    strategy = tf.distribute.TPUStrategy(tpu)
-except ValueError:
-    strategy = tf.distribute.get_strategy() # for CPU and single GPU
-    print('Number of replicas:', strategy.num_replicas_in_sync)
+# try:
+#     tpu = tf.distribute.cluster_resolver.TPUClusterResolver()
+#     tf.config.experimental_connect_to_cluster(tpu)
+#     tf.tpu.experimental.initialize_tpu_system(tpu)
+#     strategy = tf.distribute.TPUStrategy(tpu)
+# except ValueError:
+#     strategy = tf.distribute.get_strategy() # for CPU and single GPU
+#     print('Number of replicas:', strategy.num_replicas_in_sync)
 
 def arabert_encode(data):
     tokens = tokenizer.batch_encode_plus(
