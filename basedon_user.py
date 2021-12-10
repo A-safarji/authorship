@@ -6,7 +6,6 @@ import logging
 import pandas as pd
 from transformers import logging
 from transformers import TFBertModel
-from transformers import BertTokenizer
 from tensorflow.keras.layers import (
     Dense,
     Flatten,
@@ -14,15 +13,6 @@ from tensorflow.keras.layers import (
     Dropout,
     Input,
 )
-from tensorflow.keras.models import Sequential
-from tensorflow.keras.optimizers import Adam
-from tensorflow.keras import Model
-model_name = "aubmindlab/bert-base-arabertv2"
-max_length = 512
-batch_size = 128
-num_class = 95
-tf.compat.v1.logging.set_verbosity(2)
-# # tokenizer = BertTokenizer.from_pretrained(model_name)
 
 # try:
 #     tpu = tf.distribute.cluster_resolver.TPUClusterResolver()
@@ -35,15 +25,7 @@ tf.compat.v1.logging.set_verbosity(2)
 
 # def arabert_encode(data):
 #     tokens = tokenizer.batch_encode_plus(
-#         data, max_length=max_length, padding="max_length", truncation=True
-#     )
-#     return tf.constant(tokens["input_ids"])
-
-# def arabert_model():
-#     bert_encoder = TFBertModel.from_pretrained(model_name, output_attentions=True)
-#     input_word_ids = Input(
-#         shape=(max_length,), dtype=tf.int32, name="input_ids"
-#     )
+#         data, max_length=max_length, padding="max_length", 
 #     last_hidden_states = bert_encoder(input_word_ids)[0]
 #     clf_output = Flatten()(last_hidden_states)
 #     net = Dense(512, activation="relu")(clf_output)
